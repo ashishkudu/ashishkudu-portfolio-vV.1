@@ -73,7 +73,7 @@ export async function POST(request: Request) {
               typeof (item as { text?: unknown }).text === "string"
           )
           .slice(-10)
-          .map((item) => ({
+          .map((item: { role: "user" | "assistant"; text: string }) => ({
             role: item.role,
             content: item.text.slice(0, 1500)
           }))
