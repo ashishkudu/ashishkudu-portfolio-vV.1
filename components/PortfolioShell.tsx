@@ -182,6 +182,32 @@ export default function PortfolioShell() {
     return () => window.removeEventListener("keydown", key);
   }, []);
 
+  useEffect(() => {
+    const trackVisitor = async () => {
+      try {
+        await fetch("/api/visitor", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            page: window.location.pathname,
+            event_type: "page_view",
+            device: /Mobi|Android/i.test(navigator.userAgent)
+              ? "mobile"
+              : "desktop",
+            browser: navigator.userAgent,
+            referrer: document.referrer,
+          }),
+        });
+      } catch (error) {
+        console.error("Visitor tracking failed:", error);
+      }
+    };
+
+    trackVisitor();
+  }, []);
+
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
     return projects.filter((project) => {
