@@ -19,19 +19,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Copper Plate Extension",
-    category: "Design",
-    tags: ["Mechanism", "Maintenance", "CAD", "Prototyping"],
-    description: "Redesigned the electrical connection arrangement on an electrocoating barrel to improve accessibility, protect danglers during rotation, and reduce maintenance-related downtime.",
-    metric: "Serviceability",
-    sections: [
-      { title: "The problem", body: "The existing electrical connection point was located in the middle of the barrel assembly, making dangler connection and disconnection difficult. During barrel rotation, danglers could rub against surrounding components, increasing wear, replacement frequency, and maintenance effort." },
-      { title: "Design approach", body: "A copper plate extension was developed in SolidWorks to move the connection point outside the barrel assembly. Multiple 3D-printed prototypes were used to verify fit, clearance, and mounting before the design was tested and refined on the actual assembly." },
-      { title: "Result", body: "The final arrangement provides easier access to the electrical connection, reduces dangler interference during rotation, shortens the dangler routing, and improves serviceability of the electrocoating process." },
-    ],
-    highlights: ["SolidWorks CAD", "3D-printed prototypes", "Fit & functional testing", "Improved serviceability", "Reduced dangler interference"],
-  },
-  {
     title: "Hoist Castor Redesign",
     category: "Maintenance",
     tags: ["SolidWorks", "Reliability", "Design", "Serviceability"],
@@ -45,49 +32,7 @@ const projects: Project[] = [
     highlights: ["Removable axle", "Cotter-pin retention", "No routine welding", "At-height serviceability", "Lower maintenance effort"],
   },
   {
-    title: "Tube Light Protection",
-    category: "Safety",
-    tags: ["DFM", "Fabrication", "Protection"],
-    description: "Developed a grill/mesh protection concept to reduce tube-light damage caused by material handling and swinging loads without changing the existing lighting structure.",
-    metric: "Safety",
-    sections: [
-      { title: "The problem", body: "Exposed tube lights were vulnerable to impact during material handling, especially when lifted or swung loads moved through the work area. The objective was to reduce repeated breakage without changing the existing lighting structure." },
-      { title: "Design approach", body: "A grill/mesh protection concept was developed as a physical barrier around the light. The concept was evaluated with fabrication, clearance, visibility, and maintainability in mind so the protection could be added without redesigning the underlying fixture." },
-      { title: "Engineering considerations", body: "The protective geometry was treated as a sacrificial impact barrier: keep the load away from the lamp, maintain access for replacement, and avoid unnecessarily blocking useful illumination. The design direction also considers practical fabrication and installation constraints." },
-      { title: "Result", body: "The concept provides a maintainable protective layer around the existing tube light and directly targets the material-handling impact mechanism responsible for damage." },
-    ],
-    highlights: ["Impact protection", "Existing-structure compatible", "Fabrication focused", "DFM thinking"],
-  },
-  {
-    title: "Safe Lifting & Dumping",
-    category: "Mechanism",
-    tags: ["Mechanism", "Hoisting", "Product Design"],
-    description: "Developed a controlled lifting and dumping concept for a rectangular industrial bucket where the customer-owned bucket could not be structurally modified.",
-    metric: "Mechanism",
-    sections: [
-      { title: "The problem", body: "A rectangular customer-owned bucket had to be lifted with a small industrial crane and positioned for controlled dumping into an elevated hopper. The mechanism also needed to limit unwanted swing while respecting the constraint that the bucket itself could not be modified." },
-      { title: "Design constraints", body: "The solution had to interface externally with the existing bucket, work within the available crane envelope, support the load during movement, and create a predictable dumping motion without relying on permanent changes to the customer-owned container." },
-      { title: "Design approach", body: "The concept focused on an external lifting and tilting mechanism that interfaces with the existing bucket, controls the dumping motion, and keeps the load supported during handling. Mechanism layout, attachment points, clearance, and operator interaction were considered as part of the concept development." },
-      { title: "Result", body: "The mechanism-centered approach provides a path toward controlled lifting, positioning, and dumping while respecting the no-modification constraint. The concept emphasizes controlled motion and serviceable mechanical interfaces rather than modifying the customer-owned bucket." },
-    ],
-    highlights: ["External interface", "Controlled dumping", "Load handling", "Constraint-driven design"],
-  },
-  {
-    title: "Corrosion Resistance",
-    category: "Manufacturing",
-    tags: ["Six Sigma", "Root Cause", "Materials"],
-    description: "Structured an industrial corrosion problem using People, Process, Environment, Materials, and Equipment to identify practical improvement paths.",
-    metric: "Root Cause",
-    sections: [
-      { title: "The problem", body: "Steel machine components were exposed to an industrial environment where corrosion could affect reliability, maintenance effort, appearance, and service life. The goal was to understand the causes before selecting a countermeasure." },
-      { title: "Root-cause analysis", body: "The problem was structured with a Fishbone framework covering People, Process, Environment, Materials, and Equipment. A 5 Whys approach was then used to move from visible corrosion symptoms toward contributing causes and controllable factors." },
-      { title: "Engineering direction", body: "Potential countermeasures included improved surface protection, material selection, and control of environmental exposure. Options were considered against manufacturing practicality, maintenance requirements, and the existing equipment context." },
-      { title: "Result", body: "The structured analysis created a repeatable problem-solving path for corrosion: define the failure mechanism, separate contributing categories, identify root causes, and then select a practical control rather than treating the corrosion symptom alone." },
-    ],
-    highlights: ["Fishbone analysis", "5 Whys", "Materials thinking", "Process improvement"],
-  },
-  {
-    title: "Industrial Dangler Improvement",
+    title: "Industrial Electroplating Barrel Improvements",
     category: "Design",
     tags: ["CAD", "Manufacturing", "Reliability"],
     description: "Improved access to difficult mid-assembly connections and addressed rotation-related wear in an industrial electrocoating setup.",
