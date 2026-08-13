@@ -24,13 +24,6 @@ const projects: Project[] = [
     tags: ["Mechanism", "Maintenance", "CAD", "Prototyping"],
     description: "Redesigned the electrical connection arrangement on an electrocoating barrel to improve accessibility, protect danglers during rotation, and reduce maintenance-related downtime.",
     metric: "Serviceability",
-    hero: "/projects/copper/poster.png",
-    gallery: [
-      { src: "/projects/copper/before.jpeg", caption: "Existing electrocoating barrel and difficult mid-assembly connection area." },
-      { src: "/projects/copper/after.png", caption: "CAD representation of the redesigned copper plate extension." },
-      { src: "/projects/copper/detail-left.png", caption: "Left-side detail of the extension and support arrangement." },
-      { src: "/projects/copper/detail-right.png", caption: "Right-side detail showing the relocated connection point." },
-    ],
     sections: [
       { title: "The problem", body: "The existing electrical connection point was located in the middle of the barrel assembly, making dangler connection and disconnection difficult. During barrel rotation, danglers could rub against surrounding components, increasing wear, replacement frequency, and maintenance effort." },
       { title: "Design approach", body: "A copper plate extension was developed in SolidWorks to move the connection point outside the barrel assembly. Multiple 3D-printed prototypes were used to verify fit, clearance, and mounting before the design was tested and refined on the actual assembly." },
@@ -44,12 +37,6 @@ const projects: Project[] = [
     tags: ["SolidWorks", "Reliability", "Design", "Serviceability"],
     description: "Reworked a hoist caster assembly so wheel replacement can be completed at the installation point without removing the heavy assembly or performing hot work.",
     metric: "Maintenance",
-    hero: "/projects/hoist/hero.png",
-    gallery: [
-      { src: "/projects/hoist/hero.png", caption: "Redesigned caster housing with removable axle and quick-release retention." },
-      { src: "/projects/hoist/wheel.png", caption: "Wheel and housing arrangement." },
-      { src: "/projects/hoist/side.png", caption: "CAD view of the redesigned assembly." },
-    ],
     sections: [
       { title: "The problem", body: "The original caster was installed at height. Wheel replacement required removing the heavy subassembly, taking it to a maintenance shop, grinding off a welded axle end, replacing the wheel, welding the axle again, and reinstalling the assembly." },
       { title: "Design approach", body: "The redesign uses a new caster housing with a removable axle secured by a cotter pin. The housing remains installed on the hoist while only the wheel and axle are removed for replacement." },
