@@ -105,10 +105,6 @@ const projects: Project[] = [
     tags: ["CAD", "Manufacturing", "Reliability"],
     description: "Improved access to difficult mid-assembly connections and addressed rotation-related wear in an industrial electrocoating setup.",
     metric: "Reliability",
-    gallery: [
-      { src: "/projects/copper/detail-left.png", caption: "Improved connection-side detail." },
-      { src: "/projects/copper/detail-right.png", caption: "Connection routing and support detail." },
-    ],
     sections: [
       { title: "The problem", body: "Dangler connections positioned inside the assembly were difficult to access, while barrel rotation created opportunities for rubbing and wear. This made routine connection work harder and contributed to repeated dangler maintenance." },
       { title: "Design approach", body: "The improvement focused on relocating the connection access and managing the dangler routing so maintenance personnel could reach the connection more easily while reducing interference with the rotating assembly." },
