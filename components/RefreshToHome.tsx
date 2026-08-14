@@ -12,16 +12,21 @@ export default function RefreshToHome() {
 
     const frame = requestAnimationFrame(() => {
       window.scrollTo(0, 0);
-      document.documentElement.classList.add("home-refresh-bounce");
-      window.setTimeout(() => {
-        document.documentElement.classList.remove("home-refresh-bounce");
-      }, 650);
+      const home = document.getElementById("home");
+      if (home && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        home.animate(
+          [
+            { transform: "translateY(-8px)", opacity: 0.9 },
+            { transform: "translateY(3px)", opacity: 1 },
+            { transform: "translateY(-1px)" },
+            { transform: "translateY(0)" }
+          ],
+          { duration: 600, easing: "cubic-bezier(.22, 1.2, .36, 1)" }
+        );
+      }
     });
 
-    return () => {
-      cancelAnimationFrame(frame);
-      document.documentElement.classList.remove("home-refresh-bounce");
-    };
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return null;
