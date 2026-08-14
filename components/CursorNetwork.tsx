@@ -17,17 +17,25 @@ export default function CursorNetwork() {
     let time = 0;
 
     type Node = {
-  homeX: number;
-  homeY: number; x:number; y:number; vx:number; vy:number; r:number; phase:number; twinkle:number };
+      homeX: number;
+      homeY: number;
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      r: number;
+      phase: number;
+      twinkle: number;
+    };
     let nodes: Node[] = [];
 
     const seed = () => {
-      // Dense, galaxy-like field: substantially more points than before.
       const count = Math.min(110, Math.max(55, Math.floor((width * height) / 11000)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        homeX: 0, homeY: 0,
+        homeX: 0,
+        homeY: 0,
         vx: (Math.random() - 0.5) * 0.008,
         vy: (Math.random() - 0.5) * 0.008,
         r: Math.random() < 0.038 ? 1.7 + Math.random() * 1.1 : 0.45 + Math.random() * 0.75,
@@ -70,8 +78,6 @@ export default function CursorNetwork() {
 
       const visible = mouseX > -500 && mouseY > -500;
 
-
-      // Move stars and apply a stronger, wider gravitational pull.
       for (const n of nodes) {
         n.x += n.vx;
         n.y += n.vy;
@@ -81,7 +87,6 @@ export default function CursorNetwork() {
         if (n.y < -25) n.y = height + 25;
         if (n.y > height + 25) n.y = -25;
 
-        // Slowly restore points to their original positions.
         const homeStrength = 0.0018;
         n.vx += (n.homeX - n.x) * homeStrength;
         n.vy += (n.homeY - n.y) * homeStrength;
@@ -102,7 +107,6 @@ export default function CursorNetwork() {
         n.vy *= 0.972;
       }
 
-      // Spatial grid keeps the subtle star field fast.
       const cellSize = 150;
       const grid = new Map<string, number[]>();
       for (let i = 0; i < nodes.length; i++) {
@@ -127,9 +131,6 @@ export default function CursorNetwork() {
               const b = nodes[j];
               const dx = a.x - b.x, dy = a.y - b.y;
               const d2 = dx * dx + dy * dy;
-
-              // Gentle star-to-star repulsion keeps the field airy instead of
-              // letting every attracted point collapse into one cluster.
               if (d2 > 0 && d2 < 34 * 34) {
                 const d = Math.sqrt(d2);
                 const separation = Math.pow(1 - d / 34, 1.8) * 0.003;
@@ -138,13 +139,11 @@ export default function CursorNetwork() {
                 b.vx -= (dx / d) * separation;
                 b.vy -= (dy / d) * separation;
               }
-
             }
           }
         }
       }
 
-      // Stars: sparse and subtle, with a few brighter stars for a sky/galaxy feel.
       for (const n of nodes) {
         const d = visible ? Math.hypot(mouseX - n.x, mouseY - n.y) : Infinity;
         const active = d < 760;
@@ -157,7 +156,6 @@ export default function CursorNetwork() {
         ctx.arc(n.x, n.y, size, 0, Math.PI * 2);
         ctx.fill();
       }
-
 
       raf = requestAnimationFrame(draw);
     };
@@ -174,6 +172,24 @@ export default function CursorNetwork() {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseleave", leave);
     };
+  }, []);
+
+  useEffect(() => {
+    const contact = document.getElementById("contact");
+    if (!contact || contact.querySelector(".contact-links")) return;
+
+    const links = document.createElement("div");
+    links.className = "contact-links";
+    links.innerHTML = `
+      <a href="mailto:kuduashish9647@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/ashish-kudu-0ba0921b0/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://github.com/ashishkudu" target="_blank" rel="noreferrer">GitHub</a>
+    `;
+    links.style.cssText = "display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;position:relative;z-index:20";
+    links.querySelectorAll("a").forEach((a) => {
+      a.style.cssText = "display:inline-flex;align-items:center;padding:11px 18px;border:1px solid rgba(125,190,255,.35);border-radius:999px;color:inherit;text-decoration:none;cursor:pointer;position:relative;z-index:21";
+    });
+    contact.appendChild(links);
   }, []);
 
   return <canvas ref={canvasRef} className="cursor-network" aria-hidden="true" />;
