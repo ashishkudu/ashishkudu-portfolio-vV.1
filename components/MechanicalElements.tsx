@@ -9,7 +9,7 @@ export default function MechanicalElements() {
           top: "1vh",
           width: "min(1000px, 82vw)",
           height: "min(680px, 76vh)",
-          backgroundImage: "url('/projects/auv/final-side.jpg')",
+          backgroundImage: "url('/projects/auv/solid-model.png')",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundSize: "contain",
