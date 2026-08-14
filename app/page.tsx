@@ -1,5 +1,11 @@
 import PortfolioShell from "@/components/PortfolioShell";
+import RefreshToHome from "@/components/RefreshToHome";
 
 export default function Home() {
-  return <PortfolioShell />;
+  return (
+    <>
+      <RefreshToHome />
+      <PortfolioShell />
+    </>
+  );
 }
