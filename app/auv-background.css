@@ -6,16 +6,16 @@
   overflow: visible !important;
 }
 
-/* Place the AUV in the upper-right engineering area, clear of the portrait. */
+/* Keep the AUV completely above and to the right of the portrait. */
 .mechanical-elements > img {
   position: absolute;
-  width: min(390px, 30vw) !important;
-  height: min(300px, 34vh) !important;
-  right: 1.5% !important;
-  top: 3% !important;
+  width: min(300px, 24vw) !important;
+  height: min(220px, 24vh) !important;
+  right: 2% !important;
+  top: 1% !important;
   object-fit: contain !important;
   object-position: center !important;
-  opacity: .30 !important;
+  opacity: .32 !important;
   filter: grayscale(1) contrast(.75) brightness(.72);
   mix-blend-mode: screen;
   z-index: 0;
@@ -28,26 +28,26 @@
 }
 
 .version-label::after {
-  content: "Version 1.2.5";
+  content: "Version 1.2.6";
   font-size: 10px;
 }
 
 @media (max-width: 1100px) {
   .mechanical-elements > img {
-    width: 330px !important;
-    height: 260px !important;
+    width: 250px !important;
+    height: 190px !important;
     right: 1% !important;
-    top: 2% !important;
-    opacity: .26 !important;
+    top: 1% !important;
+    opacity: .28 !important;
   }
 }
 
 @media (max-width: 760px) {
   .mechanical-elements > img {
-    width: 280px !important;
-    height: 220px !important;
+    width: 220px !important;
+    height: 170px !important;
     right: 0 !important;
-    top: 1% !important;
+    top: 0 !important;
     opacity: .22 !important;
   }
 }
