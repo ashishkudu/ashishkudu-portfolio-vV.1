@@ -54,42 +54,26 @@ function Icon({ type }: { type: Item["type"] }) {
 
 function MachineWatermark() {
   return (
-    <svg
-      viewBox="0 0 900 620"
-      aria-hidden="true"
+    <div
+      className="auv-model-watermark"
       style={{
         position: "absolute",
-        right: "-8vw",
-        top: "7vh",
-        width: "min(62vw, 900px)",
-        height: "auto",
-        color: "#5fa9df",
-        opacity: 0.075,
-        filter: "blur(.25px)",
-        transform: "rotate(-7deg)",
+        right: "-4vw",
+        top: "2vh",
+        width: "min(980px, 78vw)",
+        height: "min(620px, 70vh)",
+        backgroundImage: "url('/projects/auv/solid-model.png')",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "contain",
+        opacity: 0.10,
+        filter: "grayscale(1) contrast(.9) brightness(1.12)",
+        WebkitMaskImage: "radial-gradient(ellipse 72% 62% at 58% 42%, black 0%, rgba(0,0,0,.72) 48%, transparent 84%)",
+        maskImage: "radial-gradient(ellipse 72% 62% at 58% 42%, black 0%, rgba(0,0,0,.72) 48%, transparent 84%)",
         pointerEvents: "none",
         zIndex: 0,
       }}
-    >
-      <g fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M90 430h650l70-55H160z" />
-        <path d="M155 365V225h300v140M455 365V180h180v185M635 365V255h120v110" />
-        <path d="M215 225v-75h130v75M345 150l55 75M505 180v-70h85v70" />
-        <circle cx="245" cy="430" r="78" /><circle cx="245" cy="430" r="34" />
-        <circle cx="650" cy="430" r="78" /><circle cx="650" cy="430" r="34" />
-        <path d="M167 430h-48M728 430h52M245 352v-38M245 508v38M573 430h-78M728 430h45" />
-        <path d="M280 365h190M505 365h130M300 315h125M520 285h85" />
-        <path d="M100 485h700M130 505h650" strokeDasharray="9 10" />
-        <rect x="350" y="385" width="125" height="45" rx="8" />
-        <circle cx="380" cy="407" r="10" /><circle cx="445" cy="407" r="10" />
-        <path d="M475 407h70l30-42M575 365l48-52 55 15" />
-        <path d="M705 328l52 0M731 300v55" />
-        <path d="M110 430l30-90h35l25 90M755 430l-15-92h35l25 92" />
-      </g>
-      <g fill="currentColor" opacity="0.35">
-        <circle cx="245" cy="430" r="12" /><circle cx="650" cy="430" r="12" />
-      </g>
-    </svg>
+    />
   );
 }
 
