@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./restored.css";
 
 const siteUrl = "https://ashishkudu.com";
 
@@ -80,15 +81,12 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "Ashish Kudu",
   url: siteUrl,
-  description:
-    "Mechanical engineering portfolio of Ashish Kudu.",
+  description: "Mechanical engineering portfolio of Ashish Kudu.",
   publisher: {
     "@type": "Person",
     name: "Ashish Kudu",
     url: siteUrl,
-    sameAs: [
-      "https://www.linkedin.com/in/ashish-kudu-0ba0921b0/",
-    ],
+    sameAs: ["https://www.linkedin.com/in/ashish-kudu-0ba0921b0/"],
   },
 };
 
@@ -100,9 +98,7 @@ export default function RootLayout({
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         {children}
       </body>
