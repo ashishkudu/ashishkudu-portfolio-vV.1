@@ -23,6 +23,11 @@
   z-index: 2;
 }
 
+/* Move the portrait 1 cm left without changing its size or vertical position. */
+.hero-portrait {
+  margin-left: -1cm !important;
+}
+
 .hero-assistant-card {
   position: absolute !important;
   right: 4vw;
@@ -33,14 +38,16 @@
 }
 
 .version-label { font-size: 0 !important; }
-.version-label::after { content: "Version 1.3.4"; font-size: 10px; }
+.version-label::after { content: "Version 1.3.5"; font-size: 10px; }
 
 @media (max-width: 1100px) {
   .hero::after { left: calc(51% + 3cm); top: 8%; width: 430px; height: 300px; opacity: .29; }
+  .hero-portrait { margin-left: -1cm !important; }
   .hero-assistant-card { right: 3vw; bottom: calc(28px + 2cm); width: 300px; }
 }
 
 @media (max-width: 760px) {
   .hero::after { left: calc(50% + 3cm); top: 10%; transform: translateX(-50%); width: 340px; height: 250px; opacity: .24; }
+  .hero-portrait { margin-left: -1cm !important; }
   .hero-assistant-card { position: relative !important; right: auto; bottom: auto; width: 100%; margin-top: 20px !important; }
 }
