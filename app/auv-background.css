@@ -1,33 +1,44 @@
-.blueprint-grid::after {
+.mechanical-elements::before {
   content: "";
   position: absolute;
-  width: min(920px, 68vw);
-  height: min(620px, 70vh);
-  right: 3%;
-  top: 4%;
+  width: min(760px, 62vw);
+  height: min(560px, 62vh);
+  right: 4%;
+  top: 5%;
   background: url('/projects/auv/AUV%20Model.png') center / contain no-repeat;
-  opacity: .58;
-  filter: grayscale(1) contrast(.92) brightness(.9);
+  opacity: .20;
+  filter: grayscale(1) contrast(.82) brightness(.72);
   mix-blend-mode: screen;
   pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.version-label {
+  font-size: 0 !important;
+}
+
+.version-label::after {
+  content: "Version 1.2.3";
+  font-size: 10px;
 }
 
 @media (max-width: 1100px) {
-  .blueprint-grid::after {
-    width: 680px;
-    height: 520px;
-    right: -8%;
-    top: 10%;
-    opacity: .42;
+  .mechanical-elements::before {
+    width: 650px;
+    height: 500px;
+    right: -5%;
+    top: 8%;
+    opacity: .16;
   }
 }
 
 @media (max-width: 760px) {
-  .blueprint-grid::after {
+  .mechanical-elements::before {
     width: 520px;
     height: 400px;
-    right: -25%;
-    top: 30%;
-    opacity: .28;
+    right: -22%;
+    top: 20%;
+    opacity: .12;
   }
 }
