@@ -81,6 +81,23 @@ function MechanicalSvg({ type }: { type: string }) {
 export default function MechanicalElements() {
   return (
     <div className="mechanical-elements" aria-hidden="true">
+      <img
+        src="/projects/auv/AUV%20Model.png"
+        alt=""
+        style={{
+          position: "absolute",
+          width: "min(560px, 48vw)",
+          height: "auto",
+          right: "7%",
+          top: "11%",
+          opacity: 0.11,
+          filter: "grayscale(1) contrast(.75) brightness(.72)",
+          mixBlendMode: "screen",
+          zIndex: 0,
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
       {elements.map((element) => (
         <div key={element.className} className={element.className} aria-label={element.label}>
           <MechanicalSvg type={element.type} />
