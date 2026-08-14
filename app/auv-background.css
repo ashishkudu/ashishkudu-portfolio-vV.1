@@ -7,20 +7,20 @@
   overflow: hidden;
 }
 
+/* Subtle full CAD-model watermark behind the homepage hero content. */
 .hero::after {
   content: "";
   position: absolute;
-  left: calc(52% + 3cm);
-  top: 9%;
-  width: 560px;
-  height: 360px;
+  left: 43%;
+  top: 3%;
+  width: 780px;
+  height: 540px;
   background: url('/projects/auv/AUV%20Model.png') center / contain no-repeat;
-  opacity: .32;
-  filter: grayscale(1) contrast(.78) brightness(.78);
-  mix-blend-mode: screen;
+  opacity: .16;
+  filter: grayscale(1) contrast(.9) brightness(1.15);
   pointer-events: none;
   user-select: none;
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-portrait {
@@ -40,13 +40,26 @@
 .version-label::after { content: "Version 1.3.7"; font-size: 10px; }
 
 @media (max-width: 1100px) {
-  .hero::after { left: calc(51% + 3cm); top: 8%; width: 430px; height: 300px; opacity: .29; }
+  .hero::after {
+    left: 39%;
+    top: 5%;
+    width: 620px;
+    height: 430px;
+    opacity: .14;
+  }
   .hero-portrait { margin-left: -1cm !important; }
   .hero-assistant-card { right: 3vw; bottom: calc(28px + 2cm); width: 300px; }
 }
 
 @media (max-width: 760px) {
-  .hero::after { left: calc(50% + 3cm); top: 10%; transform: translateX(-50%); width: 340px; height: 250px; opacity: .24; }
+  .hero::after {
+    left: 50%;
+    top: 8%;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 300px;
+    opacity: .10;
+  }
   .hero-portrait { margin-left: -1cm !important; }
   .hero-assistant-card { position: relative !important; right: auto; bottom: auto; width: 100%; margin-top: 20px !important; }
 }
