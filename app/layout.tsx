@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./restored.css";
+import "./auv-background.css";
 
 const siteUrl = "https://ashishkudu.com";
 
