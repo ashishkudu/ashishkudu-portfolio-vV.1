@@ -94,6 +94,16 @@ export default function PortfolioShell() {
   const [recruiterRole, setRecruiterRole] = useState("Mechanical Design");
 
   useEffect(() => {
+    // A browser refresh should always reopen the portfolio at the home/hero section.
+    // Remove any section hash and reset the scroll position before the page settles.
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: "auto" }));
+  }, []);
+
+  useEffect(() => {
     const key = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();
@@ -218,110 +228,11 @@ export default function PortfolioShell() {
           {filtered.map((project) => (
             <article className="project-card" key={project.title} tabIndex={0} role="button" onClick={() => setSelectedProject(project)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedProject(project); } }}>
               <div className="project-visual">{project.hero ? <img src={project.hero} alt="" /> : <div className="cad-lines" />}<span>{project.metric}</span></div>
-              <div className="project-body"><small>{project.category.toUpperCase()}</small><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><button onClick={(e) => { e.stopPropagation(); openAshForProject(project); }}>Ask ASH about this →</button></div>
+              <div className="project-body"><small>{project.category}</small><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><button>Explore project →</button></div>
             </article>
           ))}
         </div>
       </section>
-
-      <section id="lab" className="section engineering-lab">
-        <div className="section-head lab-head">
-          <div><p className="kicker">INTERACTIVE ENGINEERING LAB</p><h2>Explore how I solve problems.</h2><p className="lab-lede">Pick a project and move through the engineering story: problem, approach, result, and the thinking behind the design.</p></div>
-          <div className="lab-selector" role="tablist" aria-label="Engineering Lab projects">
-            {projects.slice(0, 5).map((project) => <button key={project.title} className={labProject.title === project.title ? "active" : ""} onClick={() => setLabProject(project)}>{project.title}</button>)}
-          </div>
-        </div>
-        <div className="lab-shell">
-          <div className="lab-visual">
-            {labProject.hero ? <img src={labProject.hero} alt="" /> : <div className="lab-placeholder"><span>ENGINEERING SYSTEM</span><strong>{labProject.title}</strong><i /></div>}
-            <div className="lab-overlay-label"><span>{labProject.category.toUpperCase()}</span><b>{labProject.metric}</b></div>
-          </div>
-          <div className="lab-story">
-            <div className="lab-story-top"><div><span className="project-modal-label">CURRENT EXPLORATION</span><h3>{labProject.title}</h3></div><button className="secondary lab-case-button" onClick={() => setSelectedProject(labProject)}>Open full case study →</button></div>
-            <div className="lab-steps">
-              {(labProject.sections || []).slice(0, 3).map((section, index) => <button key={section.title} className="lab-step" onClick={() => setSelectedProject(labProject)}><span>0{index + 1}</span><div><b>{section.title}</b><p>{section.body}</p></div><em>↗</em></button>)}
-            </div>
-            {labProject.highlights && <div className="lab-focus"><span>ENGINEERING FOCUS</span><div>{labProject.highlights.slice(0, 5).map((item) => <b key={item}>{item}</b>)}</div></div>}
-          </div>
-        </div>
-      </section>
-
-      <section id="experience" className="section split"><div><p className="kicker">EXPERIENCE</p><h2>Engineering in the real world.</h2></div><div className="timeline"><div><span>01</span><div><h3>Mechanical Design Engineering</h3><p>Designed and developed mechanical components and assemblies with CAD, manufacturing, maintenance, and industrial project constraints.</p></div></div><div><span>02</span><div><h3>Industrial Maintenance &amp; Troubleshooting</h3><p>Worked around equipment maintenance, inspection, troubleshooting, serviceability, and practical shop-floor constraints.</p></div></div><div><span>03</span><div><h3>Manufacturing &amp; Process Improvement</h3><p>Applied structured problem solving, root-cause analysis, DFM thinking, and prototyping to improve engineering outcomes.</p></div></div></div></section>
-
-      <section id="skills" className="section"><p className="kicker">CAPABILITY STACK</p><h2>Tools I use to solve problems.</h2><div className="skill-grid">{skills.map(([title, text]) => <div className="skill-card" key={title}><span>✦</span><h3>{title}</h3><p>{text}</p></div>)}</div></section>
-      <section id="research" className="section research"><div><p className="kicker">RESEARCH</p><h2>Engineering beyond the project floor.</h2><p>Research and academic work presented with the same emphasis on clear problem definition, method, evidence, and technical communication.</p></div><div className="research-card"><span>PUBLICATION</span><h3>Research portfolio</h3><p>Publication details, abstract, methodology, contribution, and downloadable paper can live here.</p><button>View research →</button></div></section>
-      <section id="resume" className="section resume"><div><p className="kicker">RESUME</p><h2>A recruiter-friendly view of my engineering background.</h2><p>Keep the full PDF in <code>/public/resume.pdf</code> and connect the button below to it.</p></div><a className="primary" href="/resume.pdf" target="_blank" rel="noreferrer">Download Resume ↓</a></section>
-      <section id="contact" className="section contact"><p className="kicker">CONTACT</p><h2>Let&apos;s build something useful.</h2><p>For engineering opportunities, collaborations, or project discussions.</p><div className="contact-actions"><a className="primary" href="mailto:your-email@example.com">Email me →</a><a className="secondary" href="https://www.linkedin.com/in/ashish-kudu-0ba0921b0/" target="_blank" rel="noreferrer">LinkedIn</a></div></section>
-      <footer><div className="footer-left"><span>© {new Date().getFullYear()} Ashish Kudu</span><a href="/privacy">Privacy</a></div><div className="footer-right"><span>Designed for engineering. Built for people.</span><small className="version-label">Version 1.1.7</small></div></footer>
-
-      {selectedProject && (
-        <div className="project-modal-overlay" onClick={() => setSelectedProject(null)}>
-          <article className="project-modal project-case-study" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={`${selectedProject.title} case study`}>
-            <button className="project-modal-close" onClick={() => setSelectedProject(null)} aria-label="Close project">×</button>
-            <div className="project-modal-kicker">{selectedProject.category.toUpperCase()} • {selectedProject.metric.toUpperCase()}</div>
-            <h2>{selectedProject.title}</h2>
-            <p className="project-modal-lede">{selectedProject.description}</p>
-
-            {selectedProject.hero ? (
-              <img className="case-hero" src={selectedProject.hero} alt={`${selectedProject.title} overview`} />
-            ) : (
-              <div className="case-visual-placeholder">
-                <span>ENGINEERING CASE STUDY</span>
-                <strong>Project documentation</strong>
-                <p>Detailed engineering narrative below. Visual documentation can be added here when additional project images are available.</p>
-              </div>
-            )}
-
-            {selectedProject.sections?.map((section, index) => (
-              <section className="case-section" key={section.title}>
-                <div className="case-number">{String(index + 1).padStart(2, "0")}</div>
-                <div><span className="project-modal-label">{section.title}</span><p>{section.body}</p></div>
-              </section>
-            ))}
-
-            {selectedProject.gallery && selectedProject.gallery.length > 0 && (
-              <section className="case-gallery-section">
-                <span className="project-modal-label">PROJECT VISUALS</span>
-                <div className="case-gallery">{selectedProject.gallery.map((image) => <figure key={image.src}><img src={image.src} alt={image.caption} /><figcaption>{image.caption}</figcaption></figure>)}</div>
-              </section>
-            )}
-
-            {selectedProject.highlights && <section className="case-highlights"><span className="project-modal-label">ENGINEERING FOCUS</span><div className="tags">{selectedProject.highlights.map((item) => <span key={item}>{item}</span>)}</div></section>}
-
-            <div className="case-nav">
-              <button onClick={() => { const i = projects.findIndex((p) => p.title === selectedProject.title); setSelectedProject(projects[(i - 1 + projects.length) % projects.length]); }}>← Previous project</button>
-              <span>{projects.findIndex((p) => p.title === selectedProject.title) + 1} / {projects.length}</span>
-              <button onClick={() => { const i = projects.findIndex((p) => p.title === selectedProject.title); setSelectedProject(projects[(i + 1) % projects.length]); }}>Next project →</button>
-            </div>
-            <div className="project-modal-actions"><button className="primary" onClick={() => openAshForProject(selectedProject)}>Ask ASH about this project →</button><button className="secondary" onClick={() => setSelectedProject(null)}>Close</button></div>
-          </article>
-        </div>
-      )}
-
-      {recruiterOpen && <div className="recruiter-overlay" onClick={() => setRecruiterOpen(false)}>
-        <article className="recruiter-modal" onClick={(e) => e.stopPropagation()}>
-          <button className="project-modal-close" onClick={() => setRecruiterOpen(false)} aria-label="Close recruiter mode">×</button>
-          <div className="recruiter-hero">
-            <div><span className="project-modal-kicker">60-SECOND RECRUITER MODE</span><h2>A quick look at how I design, build, and solve.</h2><p>{recruiterSummary}</p></div>
-            <div className="recruiter-stats"><div><b>7+</b><span>Engineering projects</span></div><div><b>2+</b><span>Industry experiences</span></div><div><b>1</b><span>Research publication</span></div><div><b>MS</b><span>Clemson University</span></div></div>
-          </div>
-          <div className="recruiter-roles"><span>SHOW ME THE MOST RELEVANT WORK FOR:</span>{recruiterRoles.map((role) => <button key={role} className={recruiterRole === role ? "active" : ""} onClick={() => setRecruiterRole(role)}>{role}</button>)}</div>
-          <div className="recruiter-content">
-            <div><span className="project-modal-label">CORE CAPABILITIES</span><div className="recruiter-capabilities">{skills.map(([title, text]) => <div key={title}><b>{title}</b><p>{text}</p></div>)}</div></div>
-            <div><span className="project-modal-label">RELEVANT PROJECTS</span><div className="recruiter-projects">{recruiterProjects.map((project, index) => <button key={project.title} onClick={() => { setRecruiterOpen(false); setSelectedProject(project); }}><span>0{index + 1}</span><div><b>{project.title}</b><small>{project.category} • {project.metric}</small></div><em>→</em></button>)}</div></div>
-          </div>
-          <div className="recruiter-footer"><p>Want the technical version? Explore the <button onClick={() => { setRecruiterOpen(false); scrollTo("lab"); }}>Interactive Engineering Lab</button>.</p><div><a className="primary" href="/resume.pdf" target="_blank" rel="noreferrer">View Resume ↗</a><button className="secondary" onClick={() => { setRecruiterOpen(false); setAshOpen(true); }}>Ask ASH →</button></div></div>
-        </article>
-      </div>}
-
-      <ASHAssistant open={ashOpen} onClose={() => setAshOpen(false)} initialPrompt={ashPrompt} />
-      {!ashOpen && (
-        <button className="ash-mobile-launcher" type="button" onClick={() => setAshOpen(true)} aria-label="Open ASH Engineering Assistant">
-          <span aria-hidden="true">✦</span> Ask ASH
-        </button>
-      )}
-
-      {commandOpen && <div className="command-overlay" onClick={() => setCommandOpen(false)}><div className="command" onClick={(e) => e.stopPropagation()}><div className="command-input"><span>⌕</span><input autoFocus value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search projects, skills, experience..." /></div><div className="command-results"><button onClick={() => scrollTo("projects")}>→ Projects</button><button onClick={() => scrollTo("skills")}>→ Skills</button><button onClick={() => { setCommandOpen(false); setAshOpen(true); }}>→ Ask ASH</button>{search && filtered.map((project) => <button key={project.title} onClick={() => { setCommandOpen(false); setSelectedProject(project); }}>↳ {project.title}</button>)}</div><small>ESC to close • ⌘K / Ctrl+K to open</small></div></div>}
     </main>
   );
 }
