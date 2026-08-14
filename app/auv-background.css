@@ -24,12 +24,20 @@
   z-index: 2;
 }
 
+/* Keep ASH in its original bottom-right hero position and above the AUV layer. */
+.hero-assistant-card {
+  position: relative;
+  z-index: 6;
+  align-self: end;
+  margin-bottom: 18px;
+}
+
 .version-label {
   font-size: 0 !important;
 }
 
 .version-label::after {
-  content: "Version 1.2.8";
+  content: "Version 1.2.9";
   font-size: 10px;
 }
 
