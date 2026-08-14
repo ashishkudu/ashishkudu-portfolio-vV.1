@@ -1,0 +1,29 @@
+/* AUV homepage background — version 1.1.8 */
+.blueprint-grid {
+  opacity: 1 !important;
+  background-image:
+    linear-gradient(rgba(33,123,255,.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33,123,255,.12) 1px, transparent 1px),
+    url('/projects/auv/solid-model.png') !important;
+  background-size: 44px 44px, 44px 44px, min(900px, 68vw) auto !important;
+  background-position: 0 0, 0 0, 72% 50% !important;
+  background-repeat: repeat, repeat, no-repeat !important;
+  mask-image: radial-gradient(circle at 65% 50%, black 0%, black 58%, transparent 88%) !important;
+  -webkit-mask-image: radial-gradient(circle at 65% 50%, black 0%, black 58%, transparent 88%) !important;
+  filter: grayscale(1) contrast(.9);
+}
+
+@media (max-width: 1100px) {
+  .blueprint-grid {
+    background-size: 44px 44px, 44px 44px, min(700px, 72vw) auto !important;
+    background-position: 0 0, 0 0, 70% 48% !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .blueprint-grid {
+    background-size: 44px 44px, 44px 44px, 520px auto !important;
+    background-position: 0 0, 0 0, 68% 42% !important;
+    opacity: .8 !important;
+  }
+}
