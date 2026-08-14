@@ -24,12 +24,14 @@
   z-index: 2;
 }
 
-/* Keep ASH in its original bottom-right hero position and above the AUV layer. */
+/* ASH stays anchored at the bottom-right of the homepage hero. */
 .hero-assistant-card {
-  position: relative;
-  z-index: 6;
-  align-self: end;
-  margin-bottom: 18px;
+  position: absolute !important;
+  right: 4vw;
+  bottom: 42px;
+  width: min(320px, 25vw);
+  z-index: 10 !important;
+  margin: 0 !important;
 }
 
 .version-label {
@@ -37,7 +39,7 @@
 }
 
 .version-label::after {
-  content: "Version 1.2.9";
+  content: "Version 1.3.0";
   font-size: 10px;
 }
 
@@ -49,6 +51,11 @@
     height: 300px;
     opacity: .29;
   }
+  .hero-assistant-card {
+    right: 3vw;
+    bottom: 28px;
+    width: 300px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -59,5 +66,12 @@
     width: 340px;
     height: 250px;
     opacity: .24;
+  }
+  .hero-assistant-card {
+    position: relative !important;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin-top: 20px !important;
   }
 }
