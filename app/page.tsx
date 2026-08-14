@@ -1,6 +1,7 @@
 import PortfolioShell from "@/components/PortfolioShell";
 import RefreshToHome from "@/components/RefreshToHome";
 import ImageClickHandler from "@/components/ImageClickHandler";
+import PortfolioFooter from "@/components/PortfolioFooter";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <RefreshToHome />
       <ImageClickHandler />
       <PortfolioShell />
+      <PortfolioFooter />
     </>
   );
 }
